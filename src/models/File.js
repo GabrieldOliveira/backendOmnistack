@@ -19,7 +19,9 @@ const File = new mooonse.Schema(
 );
 
 File.virtual("url").get(function() {
-  return `http://localhost:3333files/${encodeURIComponent(this.path)}`;
+  const url = process.env.PORT || " http://localhost:3333";
+
+  return `${url}/files/${encodeURIComponent(this.path)}`;
 });
 
 module.exports = mooonse.model("File", File);
